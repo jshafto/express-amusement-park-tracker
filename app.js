@@ -1,8 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
-const routes = require('./routes');
-const { restart } = require('nodemon');
+// const { restart } = require('nodemon');
 const app = express();
+
+const routes = require('./routes');
 
 app.set('view engine', 'pug');
 app.use(morgan('dev'));

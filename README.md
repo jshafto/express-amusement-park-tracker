@@ -17,7 +17,7 @@ The Amusement Park Tracker is a data-driven website that uses Express. It allows
 - Project setup:
   - [x] Setup application stub
   - [x] Custom error handlers
-  - [ ] Environmental variable configuration
+  - [x] Environmental variable configuration
 - Sequelize and express integration:
   - [ ] Sequelize configuration
   - [ ] Create "Park" model
