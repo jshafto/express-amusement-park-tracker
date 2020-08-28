@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  a(href="/park/add") Add Park
+  table
+    thead
+      tr
+        th(scope="col") Park Name
+        th(scope="col") Location
+        th(scope="col") Opened
+    tbody
+      each park in parks
+        tr
+          td #{park.parkName}
+          td #{park.city}, #{park.provinceState} #{park.country}
+          td #{park.opened}
+          td: a(class="btn btn-success" href=`/park/${park.id}` role="button") Details
