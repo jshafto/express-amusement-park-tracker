@@ -38,7 +38,20 @@ app.use((err, req, res, next) => {
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  res.render('error', { title: 'Server Error' })
+  if (process.env.NODE_ENV!== 'production') {
+    console.log(err.message)
+    res.render('error', {
+      title: 'Server Error',
+      message: err.message,
+      stack: err.stack
+    });
+  } else {
+    res.render('error', {
+      title: 'Server Error',
+      message: null,
+      stack: null
+    })
+  }
 })
 
 
