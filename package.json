@@ -27,8 +27,13 @@
     "cheerio": "^1.0.0-rc.3",
     "dotenv-cli": "^3.1.0",
     "mocha": "^7.1.1",
+    "nodemon": "^2.0.4",
     "sqlite3": "^4.1.1",
     "supertest": "^4.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "pug": "^2.0.4"
+  }
 }

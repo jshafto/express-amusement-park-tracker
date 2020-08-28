@@ -1,6 +1,38 @@
-
 # Amusement Park Tracker
+Completed as part of the App Academy curriculum. Implementation by Andrea Jackson and Juliet Shafto.
 
+## Project Description
+The Amusement Park Tracker is a data-driven website that uses Express. It allows users to explore a database of parks—creating and updating new parks, or even deleting them. It has the following features:
+  1. Navigation elements that allows users to easily navigate between the
+     different park pages.
+  2. A "Home" index page.
+  3. A "Parks" page with a table listing all parks.
+  4. A page listing a park and its details.
+  5. A form for park creation.
+  6. A form for updating park details.
+  7. A page for park deletion.
+
+
+## Project Status
+- Project setup:
+  - [ ] Setup application stub
+  - [ ] Custom error handlers
+  - [ ] Environmental variable configuration
+- Sequelize and express integration:
+  - [ ] Sequelize configuration
+  - [ ] Create "Park" model
+  - [ ] Seed database
+- Create routes and pages for CRUD operations
+  - [ ] Add "Park List" page
+  - [ ] Add "Park Detail" page
+  - [ ] Add "Add Park" page
+  - [ ] Add "Edit Park" page
+  - [ ] Add "Delete Park" page
+Bonus Features
+- [ ] Implement "Attraction" model
+- [ ] Implement "AttractionVisit" model
+
+## Project Details
 Today you'll begin building your own data-driven website using Express!
 
 The application will allow users to navigate through a list of parks. Users will
@@ -79,22 +111,22 @@ Input the following scripts into the bottom of your body to incorporate
 
 ```pug
 script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js'
-      integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' 
+      integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n'
       crossorigin='anonymous')
-script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' 
-      integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' 
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'
+      integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo'
       crossorigin='anonymous')
-script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' 
-      integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' 
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'
+      integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6'
       crossorigin='anonymous')
 ```
 
 Replace the `<!DOCTYPE html>` on the first line with `doctype html` and add the
 stylesheet below into your `head` to add bootstrap stylings:
 ```pug
-link(rel='stylesheet' 
-    href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' 
-    integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' 
+link(rel='stylesheet'
+    href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'
+    integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh'
     crossorigin='anonymous')
 ```
 
@@ -135,9 +167,9 @@ html
   head
     meta(charset='utf-8')
     meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
-    link(rel='stylesheet' 
-        href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' 
-        integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' 
+    link(rel='stylesheet'
+        href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'
+        integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh'
         crossorigin='anonymous')
     title Amusement Park Tracker - #{title}
   body
@@ -151,14 +183,14 @@ html
     .container
       h2(class='py-4') #{title}
       block content
-    script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' 
-          integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' 
+    script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js'
+          integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n'
           crossorigin='anonymous')
-    script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' 
-          integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' 
+    script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'
+          integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo'
           crossorigin='anonymous')
-    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' 
-          integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' 
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'
+          integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6'
           crossorigin='anonymous')
 ```
 
@@ -305,7 +337,7 @@ both files, define the `PORT` environment variable and set it to your
 application's HTTP port (i.e. "PORT=8080"). Remember that your `.env` file
 shouldn't be committed to source control, because it might contain sensitive
 information (i.e. database credentials). Add `.env` as an entry to your
-project's `.gitignore` file. 
+project's `.gitignore` file.
 
 ### Create the config module
 
@@ -367,7 +399,7 @@ utilize the detailed the specs to guide your configuration of the Sequelize CLI.
 You'll want to configure the Sequelize CLI by creating a `.sequelizerc` file in
 the root of your project. The `.sequelizerc` file configures the Sequelize CLI
 so that it knows where your database configuration is located and where to
-generate the models, seeders, and migrations folders. 
+generate the models, seeders, and migrations folders.
 
 Time to configure the Sequelize CLI! Begin by requiring `path` at the top of
 your `.sequelizerc` file.
@@ -740,41 +772,41 @@ Apply the following validation rules to your park model properties:
   * Not be longer than 255 characters in length or render an error message of
     "Park Name must not be more than 255 characters long".
 
-`city` should: 
+`city` should:
   * Not be null or empty.
   * Render an error message of "Please provide a value for City" if null or
     empty.
   * Not be longer than 100 characters in length or render an error message of
     "City must not be more than 100 characters long".
 
-`provinceState` should: 
+`provinceState` should:
   * Not be null or empty.
   * Render an error message of "Please provide a value for Province/State" if
     null or empty.
   * Not be longer than 100 characters in length or render an error message of
     "Province/State must not be more than 100 characters long".
 
-`country` should: 
+`country` should:
   * Not be null or empty.
   * Render an error message of "Please provide a value for Country" if null or
     empty.
   * Not be longer than 100 characters in length or render an error message of
     "Country must not be more than 100 characters long".
 
-`opened` should: 
+`opened` should:
   * Be a valid date or render an error message of "Please provide a valid date
     for Opened".
   * Not be null or render an error message of "Please provide a value for
     Opened".
 
-`size` should: 
+`size` should:
   * Not be null or empty.
   * Render an error message of "Please provide a value for Size" if null or
     empty.
   * Not be longer than 100 characters in length or render an error message of
     "Size must not be more than 100 characters long" .
 
-`description` should: 
+`description` should:
   * Not be null or empty.
   * Render an error message of "Please provide a value for Description" if null
     or empty.
@@ -805,7 +837,7 @@ If you have validation errors present, declare an `errors` variable to map each
 of your error objects into an array of error messages. Remember that you can
 console log your error objects to determine how to access each error's message.
 You'll use these error messages in your front-end view to display validation
-messages to the end user. 
+messages to the end user.
 
 Render your `park-add` template with the same `title` of `Add Park`, the `park`
 object, the `errors` array, and a `csrfToken` property with a value of
@@ -892,7 +924,7 @@ to add the class of `alert alert-danger` and role of `alert` to the `div`
 element to apply bootstrap stylings for your error messages.
 
 Now return to your `park-add` template to include your `utils.pug` and use your
-errors mixin to render errors above your form. 
+errors mixin to render errors above your form.
 
 ### Refactoring the park description field
 
@@ -949,7 +981,7 @@ You'll want to destructure the `req.body` to access the form's `parkName`,
 properties. You'll use these to generate a new `park` object with the values
 from your `req.body`. Declare a `park` variable and set it to an object with all
 the values you have just destructured from your `req.body` (i.e. `parkName`,
-`city`, etc). 
+`city`, etc).
 
 Like in your park creation route, you want to check for the existence of errors
 to determine the action of your route.
@@ -978,7 +1010,7 @@ park: {
 The spread syntax above actually creates the `park` object below:
 
 ```javascript
-park: { 
+park: {
   parkName,
   city,
   provinceState,
@@ -994,7 +1026,7 @@ Alternatively, you could use the `parkId` parsed from your `req.params.id` to
 assign the `id`, like so:
 
 ```javascript
-park: { 
+park: {
   ...park,
   id: parkId
 }
@@ -1046,7 +1078,7 @@ Create a `park-delete.pug` template to render the delete park form. Remember to
 `extend` from your main `layout` and render `block content`. In the `block
 content`, the template should render a `h3` with the park's name and two `div`
 elements. Within the first `div`, a paragraph element should display the
-message, `Proceed with deleting this park?`. 
+message, `Proceed with deleting this park?`.
 
 In the second `div`, render the park deletion form. Render a `form` with an
 `action` that connects to the `POST` method for deleting a park you defined in
@@ -1178,32 +1210,32 @@ would break down the plan to build each requested feature.
 
 [data-driven-websites-phase-1]:
   https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Module-Express/projects/data-driven-websites-phase-1.png
-  
+
 [data-driven-websites-phase-7]:
   https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Module-Express/projects/data-driven-websites-phase-7.png
-  
+
 [data-driven-websites-phase-8]:
   https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Module-Express/projects/data-driven-websites-phase-8.png
-  
+
 [data-driven-websites-phase-9]:
   https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Module-Express/projects/data-driven-websites-phase-9.png
-  
+
 [data-driven-websites-bonus-1]:
   https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Module-Express/projects/data-driven-websites-bonus-1.png
 
 
 
-[bootstrapped element]: 
+[bootstrapped element]:
   https://getbootstrap.com/docs/4.4/layout/overview/
 [Bootstrap navbar component documentation]:
   https://getbootstrap.com/docs/4.4/components/navbar/
 [Bootstrap classes]:
   https://getbootstrap.com/docs/4.4/getting-started/introduction
-[form bootstrap stylings]: 
+[form bootstrap stylings]:
   https://getbootstrap.com/docs/4.4/components/forms/
-[express-validator]: 
-  https://express-validator.github.io/docs/ 
-[mixins]: 
+[express-validator]:
+  https://express-validator.github.io/docs/
+[mixins]:
   https://pugjs.org/language/mixins.html
 [spread syntax]:
   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
