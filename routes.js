@@ -9,10 +9,6 @@ const asyncHandler = handler => (req, res, next) => {
   .catch(next)
 };
 
-// router.get('/', asyncHandler(async (req, res) => {
-//   const books = await db.Book.findAll({ order: [['title', 'ASC']] });
-//   res.render('book-list', { title: 'Books', books });
-// }));
 
 router.get('/parks', asyncHandler(async (req, res) => {
   // TODO: Await database query
@@ -24,6 +20,15 @@ router.get('/parks', asyncHandler(async (req, res) => {
     title: "Parks",
     parks
   });
+}));
+
+router.get(`/park/:id(\\d+)`, asyncHandler(async (req,res) => {
+  const id = parseInt(req.params.id, 10);
+  const park = await db.Park.findByPk(id);
+  res.render('park-detail', {
+    title: "Park Detail",
+    park
+  })
 }));
 
 router.get('/', (req, res) => {

@@ -24,7 +24,7 @@ The Amusement Park Tracker is a data-driven website that uses Express. It allows
   - [x] Seed database
 - Create routes and pages for CRUD operations
   - [x] Add "Park List" page
-  - [ ] Add "Park Detail" page
+  - [x] Add "Park Detail" page
   - [ ] Add "Add Park" page
   - [ ] Add "Edit Park" page
   - [ ] Add "Delete Park" page
