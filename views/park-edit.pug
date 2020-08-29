@@ -1,0 +1,10 @@
+extends layout
+include utils
+
+block content
+  if errors
+    +errorField(errors)
+  form(action=`/park/edit/${park.id}` method="post")
+    include park-form-fields
+    button(type="submit") Update Park
+    a(href=`/park/${park.id}`) Cancel

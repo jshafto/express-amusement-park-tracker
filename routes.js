@@ -116,6 +116,56 @@ router.post('/park/add', csrfProtection, parkValidators, asyncHandler(async(req,
   }
 }))
 
+router.get('/park/edit/:id(\\d+)', csrfProtection,asyncHandler( async (req, res) => {
+  const id = parseInt(req.params.id,10);
+  const park = await db.Park.findByPk(id);
+  res.render('park-edit', {
+    title: "Edit Park",
+    park,
+    csrfToken: req.csrfToken()
+  })
+}))
+
+router.post('/park/edit/:id(\\d+)', csrfProtection, parkValidators, asyncHandler(async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const parkToUpdate = await db.Park.findByPk(id);
+  const {
+    parkName,
+    city,
+    provinceState,
+    country,
+    opened,
+    size,
+    description
+  } = req.body;
+  const park = {
+    parkName,
+    city,
+    provinceState,
+    country,
+    opened,
+    size,
+    description
+  }
+  const validatorErrors = validationResult(req);
+
+  if (validatorErrors.isEmpty()) {
+    await parkToUpdate.update(park);
+    res.redirect(`/park/${id}`);
+  } else {
+    const errors = validatorErrors.array().map(error=>error.msg);
+    res.render('park-edit', {
+      title: "Edit Park",
+      errors,
+      park: {
+        ...park,
+        id
+      },
+      csrfToken: req.csrfToken()
+    })
+  }
+}))
+
 router.get('/', (req, res) => {
   res.render('index', { title: 'Home' })
 });

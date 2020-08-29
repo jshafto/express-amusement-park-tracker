@@ -8,6 +8,4 @@ input(type="hidden" name="_csrf" value=csrfToken)
 +textField("Opened", "opened", park.opened, "text", "ex: 2000-01-31")
 +textField("Size", "size", park.size, "text")
 label(for="description") Description
-textarea(id="description" name="description" value=park.description)
-button(type="submit") Add Park
-a(href="/") Cancel
+textarea(id="description" name="description") #{park.description}
