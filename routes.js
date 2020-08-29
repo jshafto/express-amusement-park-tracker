@@ -166,6 +166,23 @@ router.post('/park/edit/:id(\\d+)', csrfProtection, parkValidators, asyncHandler
   }
 }))
 
+router.get('/park/delete/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const park = await db.Park.findByPk(id);
+  res.render('park-delete', {
+    title: "Delete Park",
+    park,
+    csrfToken: req.csrfToken()
+  });
+}))
+
+router.post('/park/delete/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const park = await db.Park.findByPk(id);
+  await park.destroy();
+  res.redirect('/parks')
+}))
+
 router.get('/', (req, res) => {
   res.render('index', { title: 'Home' })
 });

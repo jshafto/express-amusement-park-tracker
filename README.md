@@ -27,32 +27,14 @@ The Amusement Park Tracker is a data-driven website that uses Express. It allows
   - [x] Add "Park Detail" page
   - [x] Add "Add Park" page
   - [x] Add "Edit Park" page
-  - [ ] Add "Delete Park" page
+  - [x] Add "Delete Park" page
 - Bonus Features
 - [ ] Implement "Attraction" model
 - [ ] Implement "AttractionVisit" model
 
 ## Project Details
-Today you'll begin building your own data-driven website using Express!
 
-The application will allow users to navigate through a list of parks. Users will
-also be able to create, read, update, and delete parks (CRUD features). This
-project is divided into two portions: building out pages related to parks and
-building out pages related to park attractions. As a bonus, you will
-autonomously build the features related to park attractions.
-
-When you have completed the first portion of the project, your application
-should have the following features:
-  1. Navigation elements that allows users to easily navigate between the
-     different park pages.
-  2. A "Home" index page.
-  3. A "Parks" page with a table listing all parks.
-  4. A page listing a park and its details.
-  5. A form for park creation.
-  6. A form for updating park details.
-  7. A page for park deletion.
-
-## Phase 0: Download the starter project
+### Phase 0: Download the starter project
 
 Begin by cloning the project skeleton:
 
@@ -68,7 +50,7 @@ npm run test-01
 ```
 
 
-## Phase 1: Initial application set-up
+### Phase 1: Initial application set-up
 
 Begin by installing the following dependencies:
 ```sh
@@ -81,7 +63,7 @@ Then install Nodemon as a development dependency:
 npm install nodemon@^2.0.0 --save-dev
 ```
 
-### Setting up your routes
+#### Setting up your routes
 
 Now that you are all set up, add a `routes` module by creating a `routes.js`
 file in the root of your project. Begin by requiring `express` and creating a
@@ -92,7 +74,7 @@ Use your router to define the default route that renders the `index` view to the
 `title` for the page. Hint: think of where `{ title: 'Home' }` lives as an
 argument.
 
-### Initializing your views
+#### Initializing your views
 
 It's time to create the initial `index` and `layout` views for your application.
 Begin by creating a `views` folder in the root of your project. Inside your
@@ -199,7 +181,7 @@ and rendering `block content`. In your `block content`, create a `p` element
 with the following text: "Hello from the Amusement Park Tracker app!". You are
 now ready to create your `app` module!
 
-### Creating the app module
+#### Creating the app module
 
 Begin by creating an `app.js` file in the root of your project. Require your
 `express` package, your `morgan` package, and your `./routes` module. Initialize
@@ -216,7 +198,7 @@ required from your `./routes` module.
 Lastly, don't forget to export the `app` and `router` modules you have created.
 Feel free to test your modules by running `npm run test-01`.
 
-### Creating your application entry point
+#### Creating your application entry point
 
 Create a folder named `bin` in the root of your project and make a file name
 `www`. Begin by writing `#!/usr/bin/env node` on the first line of your file.
@@ -240,7 +222,7 @@ and then browse to `http://localhost:8080/`. You should see the "Home" page
 displaying the content of the `index.pug` view you have created.
 
 
-## Phase 2: Adding custom error handlers
+### Phase 2: Adding custom error handlers
 
 It's time to add in your error handlers. In your `app` module, you will have
 your application use custom middleware functions that you will write to:
@@ -249,7 +231,7 @@ your application use custom middleware functions that you will write to:
   * Render a "Page Not Found" view for 404 errors.
   * Render a "Server Error" view for generic errors.
 
-### Catch unhandled requests
+#### Catch unhandled requests
 
 Let's begin by writing the middleware function to catch unhandled requests and
 create error objects to forward into our custom error handlers. Since you are
@@ -261,7 +243,7 @@ to be `404`. Use the middleware function's `next` parameter to forward your new
 `Error` object to the next middleware function, which will be your error handler
 that logs errors.
 
-### Log errors
+#### Log errors
 
 In the middleware function you just created, you passed your `Error` object as
 an argument into the `next` middleware function. In this error handler function,
@@ -276,7 +258,7 @@ with `console.error` when your application is `development`. How can you use
 handler does? No matter if your application is in `production`, `test`, or
 `development`, you'll want to pass `err` onto the `next` middleware function.
 
-### Page not found
+#### Page not found
 
 This error handler will take care of rendering a "Page Not Found" view for all
 errors with a status of `404`. At this point, take a moment to create a
@@ -290,7 +272,7 @@ message.
  `title` of your page. If the error's status is not `404`, simply pass on the
  error to the `next` middleware function.
 
-### Server error
+#### Server error
 
 This error handler will render a generic "Server Error" view if `err` does not
 have a status of `404`. Begin by setting the HTTP response `status` to be
@@ -319,7 +301,7 @@ if (process.env.NODE_ENV !== "production") {
 ```
 
 
-## Phase 3: Configuring environment variables
+### Phase 3: Configuring environment variables
 
 Begin by installing `dotenv` and `dotenv-cli` as development dependencies.
 
@@ -339,7 +321,7 @@ shouldn't be committed to source control, because it might contain sensitive
 information (i.e. database credentials). Add `.env` as an entry to your
 project's `.gitignore` file.
 
-### Create the config module
+#### Create the config module
 
 You'll want your config module to provide access to all of the environment
 variables of your `process.env`. Begin by creating a folder named `config` to
@@ -377,7 +359,7 @@ The last step is to update your `start` script in your `package.json`:
 Now use the `npm run test-03` command to test your project up to this point.
 
 
-## Phase 4: Installing and configuring Sequelize
+### Phase 4: Installing and configuring Sequelize
 
 Now it's time to install `sequelize` and `pg` as dependencies:
 
@@ -394,7 +376,7 @@ npm install sequelize-cli@^5.0.0 --save-dev
 Take a moment to run your tests with `npm run test-04`. Throughout this phase,
 utilize the detailed the specs to guide your configuration of the Sequelize CLI.
 
-### Configuring the Sequelize CLI
+#### Configuring the Sequelize CLI
 
 You'll want to configure the Sequelize CLI by creating a `.sequelizerc` file in
 the root of your project. The `.sequelizerc` file configures the Sequelize CLI
@@ -419,7 +401,7 @@ properties.
 Take a moment to run your tests with `npm run test-04` to test your project up
 to this point.
 
-### Initializing Sequelize
+#### Initializing Sequelize
 
 It's time to initialize Sequelize by running the following command:
 ```sh
@@ -431,7 +413,7 @@ When the command completes, your project should contain the following:
   * `db/migrations`, `db/models`, and `db/seeders` folders
   * `db/models/index.js` file
 
-### Creating a new database and database user
+#### Creating a new database and database user
 
 Before you continue configuring Sequelize, take a moment to create a database
 user and database by opening `psql` and running the following SQL statements:
@@ -445,7 +427,7 @@ grant all privileges on database amusement_park_tracker to amusement_park_tracke
 Make note of the password that you use as you'll need it for the next step in
 the configuration process!
 
-### Adding the database environment variables
+#### Adding the database environment variables
 
 Now you're ready to add the `DB_USERNAME`, `DB_PASSWORD`, `DB_DATABASE`, and
 `DB_HOST` environment variables to the `.env` and `.env.example` files.
@@ -462,7 +444,7 @@ access to the `DB_USERNAME`, `DB_PASSWORD`, `DB_DATABASE`, and `DB_HOST`
 environment variables can use the `username`, `password`, `database`, and `host`
 properties on the config module's `db` object.
 
-### Configuring the Sequelize database connection
+#### Configuring the Sequelize database connection
 
 Now you're ready to configure the database connection for Sequelize! Update the
 Sequelize database config (`./config/database.js` file) to use the `config`
@@ -484,7 +466,7 @@ settings are for the `development` environment. The `username`, `password`,
 `database`, `host`, and `dialect` properties are the Sequelize options used to
 configure the database connection.
 
-### Testing the connection to the database
+#### Testing the connection to the database
 
 Let's begin by updating the `./bin/www` file to use Sequelize to test the
 connection to the database.
@@ -505,7 +487,7 @@ failure." message and `console.error` the errors caught.
 Lastly, run your tests with `npm run test-04` to ensure that you've configured
 the Sequelize CLI successfully.
 
-## Phase 5: Creating the Park model
+### Phase 5: Creating the Park model
 
 It's time to use the Sequelize CLI to generate the Park model. You want to
 generate a model named `Park` with the following attributes:
@@ -543,7 +525,7 @@ npx dotenv sequelize db:migrate
 npm run test-05
 ```
 
-## Phase 6: Seeding the database
+### Phase 6: Seeding the database
 
 Now you'll want to create the seeder with the command below:
 ```sh
@@ -575,7 +557,7 @@ npx dotenv sequelize db:seed:all
 npm run test-06
 ```
 
-## Phase 7: Adding the Park List page
+### Phase 7: Adding the Park List page
 
 It's now time to query the database for a list of parks. Begin by creating a
 `GET` route handler for the `/parks` route in your `routes.js` file. You'll want
@@ -608,7 +590,7 @@ query of all of the parks with `db.Park.findAll`. Make sure you have required
 your `db` model from `./db/models`. Order the list of parks in alphabetical
 order by the `parkName` attribute.
 
-### Rendering the parks view
+#### Rendering the parks view
 
 Now that you have a database fetch for all your parks, create and render a
 `park-list.pug` template. Make sure you pass in your array of `parks` to the
@@ -638,14 +620,14 @@ attribute of `button` for the hyperlinks you've created to style your links as
 snazzy buttons. Take a look at the examples below for quick bootstrap stylings
 you can apply to your project:
 
-#### Home Page:
+##### Home Page:
 ![home-example][data-driven-websites-phase-1]
 
-#### Parks Page:
+##### Parks Page:
 ![park-list-example][data-driven-websites-phase-7]
 
 
-## Phase 8: Adding the Park Detail page
+### Phase 8: Adding the Park Detail page
 
 It's now time to update the `routes` module to route to a park's "Detail" page.
 
@@ -664,7 +646,7 @@ Next, use the integer you've parsed from `req.params.id` to query the database
 for the `park`. You'll want to render a `park-detail.pug` template and pass the
 `park` to the view. Remember to also set the page `title` to "Park Detail".
 
-### Rendering the Park Detail view
+#### Rendering the Park Detail view
 
 It's time to create the `park-detail` view! Begin by extending your `layout`
 view and rendering `block content`. In the `block content`, create four child
@@ -691,7 +673,7 @@ In the third `div`, you should display three hyperlinks:
 The "Park Detail" page could be updated in the bonus phase to display a list of
 attractions available at that park.
 
-## Phase 9: Adding the Add Park page
+### Phase 9: Adding the Add Park page
 
 Begin by updating the `routes` module with two new routes: a `GET` route and a
 `POST` route for `/park/add`:
@@ -707,7 +689,7 @@ are caught and forwarded to the custom error handlers. Because of how the `POST`
 route allows users to persist data into your database, you'll need access to the
 `req.body` object as well as protection against CSRF attacks.
 
-### Using middleware to protect your application
+#### Using middleware to protect your application
 
 Let's take care of adding the `cookie-parser` and `express.urlencoded()`
 middleware to your application.
@@ -741,7 +723,7 @@ Now you're ready to use CSRF protection middleware to keep your application safe
 from CSRF attacks and `express.urlencoded()` middleware to access validated
 information from the `req.body` object!
 
-### Setting up your protected routes
+#### Setting up your protected routes
 
 Add your `csrfProtection` as middleware to both your `GET` and `POST` routes for
 `/park/add`. Return to your `GET` route and pass in a `csrfToken` property with
@@ -756,7 +738,7 @@ Now you'll want to `await` the persistence your park instance to the database
 with `park.save()` before redirecting the user to the "Home" page upon success.
 But wait, what if your form has bad input data?
 
-### Validating request form data
+#### Validating request form data
 
 This is where validations come into play. It's time to validate your request
 form data and assign error messages that would be rendered to your user upon
@@ -811,7 +793,7 @@ Apply the following validation rules to your park model properties:
   * Render an error message of "Please provide a value for Description" if null
     or empty.
 
-### Adding validation errors to your routes
+#### Adding validation errors to your routes
 
 Back in your `POST` route, add a conditional that checks for the presence of
 validation errors before the park is saved to the database.
@@ -831,7 +813,7 @@ was not a Sequelize validation error, pass the error onto the `next` error
 handler. Remember that the Sequelize `error` object caught has a property called
 `errors` that holds an array of error objects.
 
-### Generating park creation errors
+#### Generating park creation errors
 
 If you have validation errors present, declare an `errors` variable to map each
 of your error objects into an array of error messages. Remember that you can
@@ -844,7 +826,7 @@ object, the `errors` array, and a `csrfToken` property with a value of
 `req.csrfToken()`. Your `asyncHandler` function will take care of passing any
 errors onto the `next` error handler.
 
-### Rendering the park creation view
+#### Rendering the park creation view
 
 Now you'll use your templates to create an HTML form. If you look ahead into the
 next phase, you'll notice that creating the `Edit Park` and `Add Park` pages are
@@ -860,7 +842,7 @@ you'll want to create your park form fields. Instead of manually adding each
 field to your `park-add.pug` template, you can plan ahead to reuse a
 `park-form-fields.pug` template that utilizes mixins.
 
-### Using mixins for DRYer code
+#### Using mixins for DRYer code
 
 Let's begin by creating `utils.pug` file to house your [mixins]. This way you
 only need to manually type out the pug code for a label and input field once.
@@ -893,7 +875,7 @@ Now use your `+textField` mixin to create input fields for your `parkName`,
 properties. Remember to use the properties of the `park` object you have passed
 into the view as each input's `fieldValue`.
 
-### Including templates for DRYer code
+#### Including templates for DRYer code
 
 Now that you have created your mixins and `park-form-fields` template, it's time
 to use them in your `park-add` template! Under the `form` element you have
@@ -906,7 +888,7 @@ click of this button, your form will package the field input values into the
 button you have created, add a "Cancel" hyperlink that will link users back to
 the home page.
 
-### Rendering errors
+#### Rendering errors
 
 But what if your user tries to submit the form with empty fields? This is where
 error rendering on the user end is important.
@@ -926,7 +908,7 @@ element to apply bootstrap stylings for your error messages.
 Now return to your `park-add` template to include your `utils.pug` and use your
 errors mixin to render errors above your form.
 
-### Refactoring the park description field
+#### Refactoring the park description field
 
 Run your tests with `npm run test-09` to check your progress up to this point.
 You should receive an error reporting that you are missing an input
@@ -960,7 +942,7 @@ Run your tests again with `npm run test-09` to check your progress. Feel free to
 add bootstrap classes to style your project or move forward to the next phase.
 
 
-## Phase 10: Adding the Edit Park page
+### Phase 10: Adding the Edit Park page
 
 Just like with the "Add Park" page, update your `routes` module with two new
 routes: a `GET` route and a `POST` route for `/park/edit/:id(\\d+)`.
@@ -1036,7 +1018,7 @@ Lastly, don't forget to use your `csrfProtection` middleware to protect your
 park's update routes and set up your validation middleware (if you used
 `express-validator`) just like in your park's create routes!
 
-### Rendering the park edit view
+#### Rendering the park edit view
 
 Now create a `park-edit` view based on the image above. Utilize the templates
 and mixins you've created to keep your code DRY. For your form's `action`,
@@ -1049,7 +1031,7 @@ Make sure you also include error rendering so that your users can be updated
 when their form data does not successfully persist to the database.
 
 
-## Phase 11: Adding the Delete Park page
+### Phase 11: Adding the Delete Park page
 
 Begin by updating the `routes` module with a new `GET` route and a new `POST`
 route to `/park/delete/:id(\\d+)`. Remember that since the user will have access
@@ -1072,7 +1054,7 @@ After fetching the `park` to delete, use the `park.destroy()` method to delete
 the park in the database. You'll want to `await` your park deletion before
 redirecting the user to the "Park List" page.
 
-### Rendering the park deletion view
+#### Rendering the park deletion view
 
 Create a `park-delete.pug` template to render the delete park form. Remember to
 `extend` from your main `layout` and render `block content`. In the `block
@@ -1093,7 +1075,7 @@ buttons with the `button:submit` emmet shortcut. Lastly, you'll want a "Cancel"
 hyperlink for your users to be able to return to the park's detail page.
 
 
-## Bonus Phase 1: Adding the Attraction model
+### Bonus Phase 1: Adding the Attraction model
 
 In a week you'll begin creating your own Express project! Often times, you begin
 planning an application by organizing what features to include. As practice for
@@ -1104,7 +1086,7 @@ and `Attraction` models.
 
 ![page-detail-example][data-driven-websites-bonus-1]
 
-### MVP List
+#### MVP List
 
 1. Attraction model with the following attributes:
     * `attractionName`
@@ -1142,7 +1124,7 @@ and `Attraction` models.
     * Render a `Cancel` hyperlink to return to the attraction details page upon
       cancellation.
 
-### Attractions Database Schema
+#### Attractions Database Schema
 
 | Column Name      | Data Type | Details               |
 |:-----------------|:---------:|:----------------------|
@@ -1159,7 +1141,7 @@ and `Attraction` models.
 | updatedAt        | date      | not null              |
 
 
-### Attractions Sample Data
+#### Attractions Sample Data
 
 ```javascript
 {
@@ -1192,7 +1174,7 @@ and `Attraction` models.
 ```
 
 
-## Bonus Phase 2: Planning and adding the AttractionVisit model
+### Bonus Phase 2: Planning and adding the AttractionVisit model
 
 Begin by designing the database schema. Consider how the `Park` model, the
 `Attraction` model, and the `AttractionVisit` model are related. Think of how
