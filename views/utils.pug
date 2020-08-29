@@ -1,0 +1,12 @@
+mixin textField(labelText, fieldName, fieldValue, typeVal, placeholderVal)
+  div(class="form-group")
+    label(for=fieldName) #{labelText}
+    input(type=typeVal id=fieldName name=fieldName value=fieldValue placeholder=placeholderVal)
+
+
+mixin errorField(errors)
+  div(class="alert alert-danger" role="alert")
+    p The following error(s) occurred:
+    ul
+      each error in errors
+        li= error

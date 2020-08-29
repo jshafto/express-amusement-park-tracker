@@ -35,7 +35,7 @@ const parkValidators = [
     .withMessage("Country must not be more than 100 characters long"),
   check("opened")
     .isDate()
-    .withMessage("Please provide a value for Opened")
+    .withMessage("Please provide a valid date for Opened")
     .exists({checkFalsy:true})
     .withMessage("Please provide a value for Opened"),
   check("size")
@@ -107,6 +107,12 @@ router.post('/park/add', csrfProtection, parkValidators, asyncHandler(async(req,
     res.redirect('/');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
+    res.render('park-add', {
+      title: 'Add Park',
+      park,
+      errors,
+      csrfToken: req.csrfToken()
+    })
   }
 }))
 

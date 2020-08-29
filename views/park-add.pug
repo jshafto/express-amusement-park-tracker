@@ -1,0 +1,8 @@
+extends layout
+include utils
+
+block content
+  if errors
+    +errorField(errors)
+  form(action="/park/add" method="post")
+    include park-form-fields
